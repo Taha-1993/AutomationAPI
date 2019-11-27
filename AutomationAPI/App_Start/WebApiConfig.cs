@@ -15,6 +15,8 @@ namespace AutomationAPI
             config.MapHttpAttributeRoutes();
             config.EnableCors();
 
+            //config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
             config.Routes.MapHttpRoute(

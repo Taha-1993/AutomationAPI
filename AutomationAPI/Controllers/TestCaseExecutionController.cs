@@ -4,10 +4,12 @@ using Service.Repositories.TestCaseExecution;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace AutomationAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/TestCaseExecution")]
     public class TestCaseExecutionController : ApiController
     {
