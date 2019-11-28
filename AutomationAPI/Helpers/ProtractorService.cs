@@ -21,7 +21,7 @@ namespace AutomationAPI.Helpers
                     testSuite.ExecutionStatus = ExecutionStatusSetup.Fail;
                     testSuite.RowID = testCaseExecutionRepository.UpsertTestSuiteExecutionResult(testSuite);
 
-                    if (testSuite.RowID != default(int?) || testSuite.RowID != 0)
+                    if (testSuite.RowID != default(int?) && testSuite.RowID != 0)
                     {
                         StartSeleniumServer();
 
