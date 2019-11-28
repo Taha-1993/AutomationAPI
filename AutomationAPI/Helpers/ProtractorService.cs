@@ -29,11 +29,11 @@ namespace AutomationAPI.Helpers
 
                         if (testSuite.ProjectName == "MAP-Internal Portal")
                         {
-                            command = $@"/K cd { ConfigurationManager.AppSettings["InternalPortalPath"] }&protractor config.js --suite { testSuite.SuiteTypeName }  --params.Suite_Name { testSuite.SuiteTypeName } --params.UserName { testSuite.Username } --params.Suite_Execution_ID { testSuite.RowID }";
+                            command = $@"/C cd { ConfigurationManager.AppSettings["InternalPortalPath"] }&protractor config.js --suite { testSuite.SuiteTypeName }  --params.Suite_Name { testSuite.SuiteTypeName } --params.UserName { testSuite.Username } --params.Suite_Execution_ID { testSuite.RowID }";
                         }
                         else if (testSuite.ProjectName == "MAP-External Portal")
                         {
-                            command = $@"/K cd { ConfigurationManager.AppSettings["ExternalPortalPath"] }&protractor config.js --suite { testSuite.SuiteTypeName } --params.Suite_Name { testSuite.SuiteTypeName } --params.UserName { testSuite.Username } --params.Suite_Execution_ID { testSuite.RowID }";
+                            command = $@"/C cd { ConfigurationManager.AppSettings["ExternalPortalPath"] }&protractor config.js --suite { testSuite.SuiteTypeName } --params.Suite_Name { testSuite.SuiteTypeName } --params.UserName { testSuite.Username } --params.Suite_Execution_ID { testSuite.RowID }";
                         }
 
                         process.StartInfo.Arguments = $"{ command } & timeout 5 & exit";
@@ -62,7 +62,7 @@ namespace AutomationAPI.Helpers
                 using (Process process = new Process())
                 {
                     process.StartInfo.FileName = "cmd.exe";
-                    process.StartInfo.Arguments = "/K webdriver-manager start";
+                    process.StartInfo.Arguments = "/C webdriver-manager start";
                     process.Start();
                 }
                 Thread.Sleep(5000);
