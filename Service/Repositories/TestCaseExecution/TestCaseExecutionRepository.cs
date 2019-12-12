@@ -19,6 +19,7 @@ namespace Service.Repositories.TestCaseExecution
         private const string PARAM_SUITE_NAME = "@Suite_Name";
         private const string PARAM_EXECUTION_STATUS = "@Execution_Status";
         private const string PARAM_ROW_ID = "@Row_ID";
+        private const string PARAM_FILE_PATH = "@File_Path";
 
         // Stored Procedure names
         private const string USP_GET_TEST_SUITE_DETAILS = "usp_Get_Test_Suite_Details";
@@ -60,7 +61,8 @@ namespace Service.Repositories.TestCaseExecution
                 new SqlParameter() { ParameterName = PARAM_SUITE_NAME, SqlDbType = SqlDbType.VarChar, Value = testSuite.SuiteTypeName },
                 new SqlParameter() { ParameterName = PARAM_EXECUTION_STATUS, SqlDbType = SqlDbType.VarChar, Value = testSuite.ExecutionStatus },
                 new SqlParameter() { ParameterName = PARAM_ROW_ID, SqlDbType = SqlDbType.Int, Value = testSuite.RowID.ToDBNull() },
-                new SqlParameter() { ParameterName = PARAM_USERNAME, SqlDbType = SqlDbType.VarChar, Value = testSuite.Username }
+                new SqlParameter() { ParameterName = PARAM_USERNAME, SqlDbType = SqlDbType.VarChar, Value = testSuite.Username },
+                new SqlParameter() { ParameterName = PARAM_FILE_PATH, SqlDbType = SqlDbType.VarChar, Value = testSuite.File_Path.ToDBNull() }
             };
 
             return Utilities.UpsertHelper(ConnectionString, USP_INSERT_TEST_SUITE_EXECUTION_RESULT, sqlParams);
