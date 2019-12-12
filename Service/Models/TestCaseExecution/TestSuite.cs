@@ -11,5 +11,7 @@
         public int? RowID { get; set; }
 
         public string Username { get; set; }
+
+        public string File_Path { get; set; }
     }
 }
