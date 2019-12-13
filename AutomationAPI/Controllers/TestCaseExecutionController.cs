@@ -97,7 +97,7 @@ namespace AutomationAPI.Controllers
                 filePath = String.Format(filePath);
                 if (!File.Exists(filePath))
                 {
-                    return Request.CreateResponse(String.Empty);
+                    return Request.CreateResponse("File doesn't exist");
                 }
                 var fileContents = File.ReadAllText(filePath);
                 var response = new HttpResponseMessage();
