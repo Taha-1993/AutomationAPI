@@ -3,6 +3,9 @@ using Service.Models.TestCaseExecution;
 using Service.Repositories.TestCaseExecution;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -82,6 +85,29 @@ namespace AutomationAPI.Controllers
             catch (Exception ex)
             {
                 return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("ExportTestReport")]
+        public HttpResponseMessage ExportTestReport(string filePath)
+        {
+            try
+            {
+                filePath = String.Format(filePath);
+                if (!File.Exists(filePath))
+                {
+                    return Request.CreateResponse(String.Empty);
+                }
+                var fileContents = File.ReadAllText(filePath);
+                var response = new HttpResponseMessage();
+                response.Content = new StringContent(fileContents);
+                response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/html");
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
     }
